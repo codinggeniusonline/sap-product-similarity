@@ -1,5 +1,4 @@
 """
-Human-readable check of the similarity results.
 Shows the query product, then its 5 most similar matches side by side,
 so YOU can eyeball whether the matches make sense.
 """
