@@ -1,0 +1,52 @@
+# Optional k8s deployment + service. Apply with: kubectl apply -f k8s.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-similarity
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: product-similarity
+  template:
+    metadata:
+      labels:
+        app: product-similarity
+    spec:
+      containers:
+        - name: api
+          image: product-similarity:latest   # build & push, or use local image
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+          # Probes use the /health endpoint defined in main.py.
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20      # model + matrix load takes a moment
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 40
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-similarity
+spec:
+  selector:
+    app: product-similarity
+  ports:
+    - port: 80
+      targetPort: 8000
+  type: ClusterIP

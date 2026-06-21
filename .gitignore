@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Model / cache files downloaded at runtime
+.cache/
+*.faiss
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Note: the data/ .ldjson file is intentionally NOT ignored if you want to
+# ship it with the repo. If the file is large, ignore it and document the
+# download step in the README instead.
+
+data/archive.zip
+data/archive/
+
+data/
+*.ldjson

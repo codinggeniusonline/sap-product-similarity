@@ -1,0 +1,10 @@
+# Keep the Docker build context small and fast.
+.venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+*.md
+explore*.py
+show_results.py
+test_part3.py
