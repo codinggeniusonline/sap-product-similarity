@@ -1,4 +1,4 @@
-# Product Similarity Search — SAP Technical Exercise
+# Product Similarity Search
 
 A product similarity search system built on the Amazon Fashion 2020 dataset
 (~30,000 products). Given a product's `uniq_id`, it returns the most similar
@@ -80,7 +80,7 @@ docker run -p 8000:8000 product-similarity
 
 ## Design decisions and reasoning
 
-### Step 0 — data inspection first
+### Data inspection first
 Before writing any similarity logic I inspected the dataset (`explore.py`).
 Key findings that shaped the design:
 
